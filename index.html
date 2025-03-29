@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoWatch</title>
+    <style>
+        :root {
+            --color-blue: #3056e3;
+            --color-light: #f0f4f8;
+            --color-orange: #f7a723;
+            --color-black: #1a1a1a;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-black);
+            color: var(--color-light);
+        }
+        
+        header {
+            background-color: var(--color-black);
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-orange);
+        }
+        
+        .site-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--color-orange);
+        }
+        
+        .login-button {
+            background-color: var(--color-orange);
+            color: var(--color-black);
+            border: none;
+            border-radius: 3px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .login-button:hover {
+            background-color: #ffc14d;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            color: var(--color-light);
+            text-align: center;
+        }
+        
+        .color-palette {
+            display: flex;
+            width: 200px;
+            margin: 20px auto;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--color-light);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background-color: var(--color-black);
+            width: 400px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            border: 1px solid var(--color-orange);
+        }
+        
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--color-light);
+        }
+        
+        .google-icon {
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 10px;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin: 10px 0;
+            color: var(--color-orange);
+        }
+        
+        .account-list {
+            margin-top: 20px;
+        }
+        
+        .account-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--color-light);
+        }
+        
+        .account-item:hover {
+            background-color: #3a3a3a;
+        }
+        
+        .account-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--color-blue);
+            color: var(--color-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .account-info {
+            flex-grow: 1;
+        }
+        
+        .account-name {
+            font-weight: 500;
+            color: var(--color-light);
+        }
+        
+        .account-email {
+            font-size: 14px;
+            color: #bbbbbb;
+        }
+        
+        .use-another {
+            padding: 10px;
+            margin-top: 10px;
+            text-align: center;
+            color: var(--color-orange);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="site-name">VideoWatch</div>
+        <button id="login-button" class="login-button">Login</button>
+    </header>
+    
+    <div class="content">
+        <div class="color-palette">
+            <div style="background-color: var(--color-blue); height: 5px; flex: 1;"></div>
+            <div style="background-color: var(--color-light); height: 5px; flex: 1;"></div>
+            <div style="background-color: var(--color-orange); height: 5px; flex: 1;"></div>
+            <div style="background-color: var(--color-black); height: 5px; flex: 1;"></div>
+        </div>
+        <div class="page-title">Welcome to VideoWatch</div>
+        <p>This is a test page to demonstrate the Google login button functionality.</p>
+    </div>
+    
+    <div id="google-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="google-icon"></div>
+                <div class="modal-title">Choose an account</div>
+                <div>to continue to videowatch.world</div>
+            </div>
+            
+            <div class="account-list">
+                <div class="account-item">
+                    <div class="account-avatar">T</div>
+                    <div class="account-info">
+                        <div class="account-name">Terry K</div>
+                        <div class="account-email">terry@example.com</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="use-another">Use another account</div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('login-button').addEventListener('click', function() {
+            document.getElementById('google-modal').style.display = 'flex';
+        });
+        
+        document.getElementById('google-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+        
+        document.querySelector('.account-item').addEventListener('click', function() {
+            alert('Account selected. Login successful!');
+            document.getElementById('google-modal').style.display = 'none';
+        });
+        
+        document.querySelector('.use-another').addEventListener('click', function() {
+            alert('Login with another account');
+        });
+    </script>
+</body>
+</html>
